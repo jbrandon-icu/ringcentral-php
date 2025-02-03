@@ -44,7 +44,7 @@ class WebSocket extends EventDispatcher
         $this->_responseCallbacks = [];
     }
 
-    public function connect(Connector $connector = null) {
+    public function connect(?Connector $connector = null) {
         try {
             return $this->_connect($connector);
         } catch (Exception $e) {
@@ -53,7 +53,7 @@ class WebSocket extends EventDispatcher
         }
     }
 
-    protected function _connect(Connector $connector = null) {
+    protected function _connect(?Connector $connector = null) {
         $tokenResponse = $this->_platform->post('/restapi/oauth/wstoken');
         $this->_wsToken = $tokenResponse->json();
         $authHeaders = [
